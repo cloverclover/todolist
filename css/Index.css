@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    height: 50px;
+    background-color: black;
+}
+
+section {
+    height: 50px;
+    width: 40%;
+    margin: 0 auto;
+    line-height: 50px;
+    overflow: hidden;
+}
+
+section label {
+    float: left;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+section #addList {
+    float: right;
+    margin-top: 12.5px;
+    width: 250px;
+    font-size: 18px;
+    padding: 2px 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: none;
+}
+
+.content {
+    width: 40%;
+    margin: 0 auto;
+}
+
+#todocount,
+#donecount {
+    float: right;
+}
+
+ol {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+li {
+    font-size: 22px;
+}
+
+.del {
+    float: right;
+    cursor: pointer;
+}
