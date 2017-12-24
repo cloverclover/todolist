@@ -27,7 +27,7 @@ function deleteItem(i) {
 }
 
 function updateItem(i, value, done) {
-    todolist[i].value = value;
+    todolist[i].todo = value;
     todolist[i].done = done;
 
     //保存数据到缓存中
@@ -69,14 +69,14 @@ function loadData() {
             if (!todolist[i].done) {
                 todoString += "<li>" +
                     "<input type=\"checkbox\" onchange=\"changeState(" + i + ")\">" +
-                    "<span>" + todolist[i].todo + "</span>" +
+                    "<span id=\"span_" + i + "\"onclick=\"edittodolist(" + i + ",'" + todolist[i].todo + "')\">" + todolist[i].todo + "</span>" +
                     "<span class=\"del\" id=\"" + i + "\" onclick=\"deleteItem(" + i + ")\">删除</span>" +
                     "</li>";
                 todocount++;
             } else {
                 doneString += "<li>" +
                     "<input type=\"checkbox\" onchange=\"changeState(" + i + ")\" checked=\"checked\">" +
-                    "<span>" + todolist[i].todo + "</span>" +
+                    "<span id=\"span_" + i + "\"onclick=\"edittodolist(" + i + ",'" + todolist[i].todo + "')\">" + todolist[i].todo + "</span>" +
                     "<span class=\"del\" id=\"" + i + "\" onclick=\"deleteItem(" + i + ")\">删除</span>" +
                     "</li>";
                 donecount++;
@@ -105,6 +105,39 @@ function addtodolist() {
         }
     }
 }
+//
+function edittodolist(i, value) {
+
+    loadData();
+    var input_out = document.getElementById("span_" + i);
+    //var insert = "<input type=\"text\" id=\"input_" + i + "\" value=\"" + value + "\" onblur=\"edittodolistset(" + i + ")\">";
+    var insert = "<input type=\"text\" id=\"input_" + i + "\" value=\"" + value + "\" >";
+
+    input_out.innerHTML = insert;
+
+    var newinput = document.getElementById("input_" + i);
+
+    newinput.focus();
+    newinput.onblur = function(e) {
+        edittodolistset(i, this.value);
+    }
+
+
+
+
+
+
+}
+
+function edittodolistset(i, value) {
+    //console.log(i + value + todolist[i].done);
+    updateItem(i, value, todolist[i].done);
+
+
+
+    loadData();
+}
+
 window.onload = function() {
     //绑定回车添加功能
     addtodolist();
